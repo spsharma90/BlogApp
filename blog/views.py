@@ -38,14 +38,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 #     return render(request,'blog/home.html',{'posts':PostsList})
 
 def print_settings(request):
-    settings_list = []  # Create an empty list to store the settings names
+    specific_settings = ['STATIC_ROOT', 'STATIC_URL', 'MEDIA_ROOT', 'MEDIA_URL']
+    
+    settings_dict = {}
 
-    # Loop through each setting name in dir(settings) and add it to the list
-    for name in dir(settings):
-        settings_list.append(name)
+    # Loop through each specific setting and get its value
+    for name in specific_settings:
+        settings_dict[name] = getattr(settings, name, 'Not Found')  # Use 'Not Found' if the setting is missing
+
 
     # Pass the list to the template and render it
-    return render(request, 'blog/print.html', {'data': settings_list})
+    return render(request, 'blog/print.html', {'data': settings_dict})
     
 # Class based view logic
 
