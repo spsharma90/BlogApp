@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import dj_database_url
 import os
 from pathlib import Path
+from django.conf import settings
+dir(settings)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -138,7 +140,7 @@ STATICFILES_DIRS=[
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR,'assets')
-print(STATIC_ROOT)
+settings.STATIC_ROOT
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
