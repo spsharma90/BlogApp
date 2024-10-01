@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Settings List</title>
+    <title>Django Settings Values</title>
 </head>
 <body>
-    <h1>List of Django Settings</h1>
+    <h1>Specific Django Settings and Their Values</h1>
     
-    <ul>
-        {% for setting in data %}
-            <li>{{ setting }}</li>
-        {% endfor %}
-    </ul>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Setting Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for setting_name, setting_value in data.items %}
+            <tr>
+                <td>{{ setting_name }}</td>
+                <td>{{ setting_value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
