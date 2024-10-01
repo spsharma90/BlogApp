@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Posts
+from django.conf import settings
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -36,6 +37,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 #     return render(request,'blog/home.html',{'posts':PostsList})
 
+def print_settings(request):
+    settings_list = []  # Create an empty list to store the settings names
+
+    # Loop through each setting name in dir(settings) and add it to the list
+    for name in dir(settings):
+        settings_list.append(name)
+
+    # Pass the list to the template and render it
+    return render(request, 'blog/print.html', {'data': settings_list})
+    
 # Class based view logic
 
 class PostListView(ListView):
